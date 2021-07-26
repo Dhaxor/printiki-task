@@ -18,7 +18,7 @@ const { check, validationResult } = require('express-validator');
 
 
     /* add a product */
- router.post('/',[check('name', 'Name is create a product').not().isEmpty()], async function(req, res) {
+ router.post('/',[check('name', 'Name is required to create a product').not().isEmpty()], async function(req, res) {
    
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
