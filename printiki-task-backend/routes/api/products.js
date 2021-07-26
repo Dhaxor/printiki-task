@@ -17,7 +17,7 @@ const { check, validationResult } = require('express-validator');
 
 
 
-    /* add a todo */
+    /* add a product */
  router.post('/',[check('name', 'Name is create a product').not().isEmpty()], async function(req, res) {
    
     const errors = validationResult(req);
@@ -44,7 +44,7 @@ const { check, validationResult } = require('express-validator');
 
 });
 
-/* get todo by id */
+/* get product by id */
 
 router.get('/:id', async function(req, res) { 
     try {
@@ -56,7 +56,7 @@ router.get('/:id', async function(req, res) {
     }
  });
 
- /* update a todo*/
+ /* update a product*/
 
  router.put('/:id',[check('title', 'Title is required to uodate a todo').not().isEmpty()], async function(req, res) { 
     
@@ -82,22 +82,11 @@ router.get('/:id', async function(req, res) {
 ;
 
 
-/* delete a todo */
+/* delete a product */
 router.delete('/:id', async function(req, res) { 
     try {
-        const todo = await  Product.findByIdAndRemove(req.params.id);
+        const product = await  Product.findByIdAndRemove(req.params.id);
         return res.status(200).json({ product: product });
-        
-    } catch (error) {
-        console.log(error);
-    }
-});
-
-/* Search for todo by title*/
-router.get('/search/:title', async function(req, res) { 
-    try {
-        const todo = await Todo.find({ title: req.params.title });
-        return res.json(todo);
         
     } catch (error) {
         console.log(error);
